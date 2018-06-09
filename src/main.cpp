@@ -90,7 +90,7 @@ Mat GetMaxFocus(vector<Mat>& focusMeasured, vector<Mat>& inputImages)
 
 int main( int argc, char** argv )
 {
-    string pathDir = "../data/bug/";
+    string pathDir = "data/bug/";
     if(argc > 1)
         pathDir = argv[1];
 
@@ -118,8 +118,8 @@ int main( int argc, char** argv )
     Mat maxFocus = GetMaxFocus(focusMeasured, images);
     Mat depthMap = measureDepth(focusMeasured);
 
-    imwrite(("../../results/FocusMax.png"), maxFocus, compression_params);
-    imwrite(("../../results/Depth.png"), depthMap, compression_params);
+    imwrite(("results/FocusMax.png"), maxFocus, compression_params);
+    imwrite(("results/Depth.png"), depthMap, compression_params);
 
     return 0;
 }
