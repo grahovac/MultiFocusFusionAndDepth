@@ -1,4 +1,6 @@
 #include "Variance.hpp"
+#include "../ImageWrapping/ImageFunctions.hpp"
+
 using namespace std;
 using namespace cv;
 
@@ -11,17 +13,20 @@ Mat Variance::measureFocus(Mat& inImg)
         cvtColor(inImg, inImg, CV_RGB2GRAY);
     }
 
-    Mat& dst(inImg);
+    Mat dst(nRows, nCols, CV_64FC1);
     double mean = getMean(inImg);
-    uchar* q;
+    double* q;
+    uint8_t* p;
     for(int i = 0; i < nRows; i++)
     {
-        q = dst.ptr<uchar>(i);
+        q = dst.ptr<double>(i);
+        p = inImg.ptr<uchar>(i);
         for(int j = 0; j < nCols; j++)
         {
-            q[j] = (q[j]-mean)*(q[j]-mean);
+            q[j] = (p[j]-mean)*(p[j]-mean);
         }
     }
+
     return dst;
 }
 

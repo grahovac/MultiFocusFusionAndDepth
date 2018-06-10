@@ -113,6 +113,7 @@ int main( int argc, char** argv )
     for(int i = 0; i<grayimages.size(); i++) {
         Mat tmp = focusctx.measure(grayimages[i]);
         focusMeasured.push_back(tmp);
+        //imwrite(("ResultsFM" + to_string(i) + ".png"), convertToU8<double>(tmp), compression_params);
     }
 
     Mat maxFocus = GetMaxFocus(focusMeasured, images);
